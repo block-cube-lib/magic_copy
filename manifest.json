@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "MagicCopy",
+  "version": "1.0",
+  "description": "Copy specified content from websites to clipboard with a single click",
+  "permissions": ["activeTab", "clipboardWrite", "storage"],
+  "action": {
+    "default_popup": "src/popup.html"
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"]
+    }
+  ]
+}
+
