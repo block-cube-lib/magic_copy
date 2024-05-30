@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MagicCopy - All Settings</title>
+  <style>
+    body {
+      width: 500px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .setting-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h3>All Settings</h3>
+  <div id="settingsList"></div>
+  <button id="exportSettings">Export Settings</button>
+  <input type="file" id="importFile" style="display:none" />
+  <button id="importFileButton">Import Settings from File</button>
+  <button id="importPasteButton">Import Settings from JSON</button>
+  <textarea id="importTextArea" placeholder="Paste JSON here" style="display:none"></textarea>
+  <script src="settings.js"></script>
+</body>
+</html>
+
