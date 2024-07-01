@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>MagicCopy</title>
-  <style>
+  <head>
+    <title>Scriptable Copy</title>
+    <style>
     body {
-      width: 300px;
+      width: 600px;
       padding: 10px;
       font-family: Arial, sans-serif;
+    }
+
+    textarea:read-only {
+      background-color: #ccc;
+    }
+
+    .flex-end {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .flex-end > * {
+      margin-left: 10px;
     }
 
     .group {
@@ -17,7 +30,7 @@
       background-color: #f9f9f9;
     }
 
-    textarea, input, select, button {
+    textarea, input, select {
       width: 100%;
       margin-bottom: 10px;
       padding: 8px;
@@ -56,9 +69,6 @@
     }
 
     .message {
-      text-align: center;
-      margin-top: -10px;
-      margin-bottom: 10px;
       color: green;
       display: none;
     }
@@ -68,76 +78,51 @@
       align-items: center;
     }
 
+    .radio-container > input {
+      width: auto;
+    }
+
     .button-row {
       display: flex;
       gap: 10px;
     }
 
-    #urlPatternGroup, #settingsSelect, #settingsName, #selectors, #format, #saveSettings, #selectorsGroup {
-      display: none;
-    }
-
-    #presetCustom:checked ~ #urlPatternGroup,
-    #presetCustom:checked ~ #settingsSelect,
-    #presetCustom:checked ~ #settingsName,
-    #presetCustom:checked ~ #selectors,
-    #presetCustom:checked ~ #format,
-    #presetCustom:checked ~ #saveSettings,
-    #presetCustom:checked ~ #selectorsGroup {
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <h3>MagicCopy</h3>
-
-  <div class="group" id="presetGroup">
-    <div class="radio-container">
-      <input type="radio" id="presetDefault" name="preset" value="{Title}\n{URL}">
-      <label for="presetDefault">Default (Title and URL on separate lines)</label>
+    </style>
+  </head>
+  <body>
+    <h3>Scriptable Copy</h3>
+    <div id="customSetting">
+      custom setting
     </div>
-    <div class="radio-container">
-      <input type="radio" id="presetTitleUrl" name="preset" value="{Title} {URL}">
-      <label for="presetTitleUrl">Title and URL</label>
+
+    <div class="group">
+      Setting Selector
+      <select id="settingSelector", size="3">
+      </select>
+      <div class="flex-end">
+        <button>Add new</button>
+      </div>
+      <input id="settingsName" placeholder="Enter name for the setting"/>
+      <textarea id="selectors" placeholder="Enter selectors, one per line"></textarea>
+      <textarea id="format" placeholder="Enter format string (e.g., 'Title: {Title}, URL: {URL}')"></textarea>
+      <div class="flex-end">
+        <div class="message" id="savedMessage">Saved</div>
+        <button id="saveSettingButton">Save Settings</button>
+      </div>
     </div>
-    <div class="radio-container">
-      <input type="radio" id="presetMarkdown" name="preset" value="[{Title}]({URL})">
-      <label for="presetMarkdown">Markdown</label>
+
+    <div class="group" id="previewGroup">
+      preview
+      <div id="preview"></div>
+      <div class="flex-end">
+        <div class="message" id="copiedMessage">Copied</div>
+        <button id="updatePreviewButton">Update Preview</button>
+        <button id="copyButton">Copy to Clipboard</button>
+      </div>
     </div>
-    <div class="radio-container">
-      <input type="radio" id="presetCustom" name="preset" value="custom">
-      <label for="presetCustom">Custom</label>
-    </div>
-  </div>
 
-  <div class="group" id="urlPatternGroup">
-    <input id="urlPattern" placeholder="Enter URL pattern (e.g., '*://*.example.com/*')"/>
-    <div class="button-row">
-      <button id="setCurrentUrl">Set Current URL</button>
-      <button id="checkPattern">Check Pattern</button>
-    </div>
-    <span id="patternResult" class="result-icon"></span>
-  </div>
-
-  <div class="group" id="selectorsGroup">
-    <select id="settingsSelect"></select>
-    <input id="settingsName" placeholder="Enter name for the setting"/>
-    <textarea id="selectors" placeholder="Enter selectors, one per line"></textarea>
-    <textarea id="format" placeholder="Enter format string (e.g., 'Title: {Title}, URL: {URL}')"></textarea>
-    <button id="saveSettings">Save Settings</button>
-  </div>
-
-  <div class="group" id="previewGroup">
-    <button id="previewButton">Preview</button>
-    <button id="copy">Copy to Clipboard</button>
-    <div id="preview"></div>
-    <div class="message" id="copiedMessage">Copied</div>
-    <div class="message" id="savedMessage">Saved</div>
-  </div>
-
-  <a id="allSettingsLink" href="settings.html" target="_blank">View All Settings</a>
-
-  <script src="popup.js"></script>
-</body>
+    <a id="allSettingsLink" href="settings.html" target="_blank">View All Settings</a>
+    <script type="module" src="./popup.js"></script>
+  </body>
 </html>
 

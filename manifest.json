@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "MagicCopy",
+  "name": "Scriptable Copy",
   "version": "1.0",
   "description": "Copy specified content from websites to clipboard with a single click",
   "permissions": ["activeTab", "clipboardWrite", "storage", "declarativeContent"],
