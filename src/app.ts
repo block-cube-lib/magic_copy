@@ -345,8 +345,8 @@ class App {
     this.model.currentSetting.selectors = this.view.selectorsInput.value.split('\n');
     this.model.currentSetting.format = this.view.formatInput.value;
     await this.model.saveCurrentSettingToChromeStorage();
-    this.view.settingNameInput.textContent = this.model.currentSetting.name;
-    
+    this.view.settingSelector.options.namedItem(this.model.currentSetting.id)!.innerText = this.model.currentSetting.name;
+
     this.view.showSavedMessage();
   }
 
