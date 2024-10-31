@@ -30,10 +30,16 @@
       background-color: #f9f9f9;
     }
 
-    textarea, input, select {
+    textarea, input {
       width: 100%;
       margin-bottom: 10px;
       padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    select {
+      width: 100%;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
@@ -97,14 +103,19 @@
 
     <div class="group">
       Setting Selector
+      <div>
+        <input type="checkbox" id="urlPatterFilterEnabledCheckBox" value="urlPatternFilterEnabled" />
+        <label for="urlPatternFilterEnabled">URL Pattern Filter</label>
+      </div>
       <select id="settingSelector", size="3">
       </select>
       <div class="flex-end">
-        <button>Add new</button>
+        <button id="addSettingButton">+</button>
       </div>
-      <input id="settingsName" placeholder="Enter name for the setting"/>
+      <input id="settingName" placeholder="Enter name for the setting"/>
       <textarea id="selectors" placeholder="Enter selectors, one per line"></textarea>
       <textarea id="format" placeholder="Enter format string (e.g., 'Title: {Title}, URL: {URL}')"></textarea>
+      <input id="urlPattern" placeholder="URL Pattern"/>
       <div class="flex-end">
         <div class="message" id="savedMessage">Saved</div>
         <button id="saveSettingButton">Save Settings</button>

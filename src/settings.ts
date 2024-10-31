@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
   const settingsList = document.getElementById('settingsList');
   const exportSettingsButton = document.getElementById('exportSettings');
@@ -16,7 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <div>
             <strong>Pattern:</strong> ${setting.pattern}<br>
             <strong>Name:</strong> ${setting.name}<br>
-            <strong>Selectors:</strong><br> ${setting.selectors.join('<br>')}<br>
+            <strong>Selectors:</strong><br> ${
+          setting.selectors.join('<br>')
+        }<br>
             <strong>Format:</strong> ${setting.format}<br>
             <button data-id="${id}" class="delete">Delete</button>
           </div>
@@ -24,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         settingsList.appendChild(div);
       }
 
-      document.querySelectorAll('.delete').forEach(button => {
+      document.querySelectorAll('.delete').forEach((button) => {
         button.addEventListener('click', (event) => {
           const id = event.target.getAttribute('data-id');
           chrome.storage.sync.remove(id, loadSettings);
@@ -35,10 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const exportSettings = () => {
     chrome.storage.sync.get(null, (items) => {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(items));
+      const dataStr = 'data:text/json;charset=utf-8,' +
+        encodeURIComponent(JSON.stringify(items));
       const downloadAnchorNode = document.createElement('a');
-      downloadAnchorNode.setAttribute("href", dataStr);
-      downloadAnchorNode.setAttribute("download", "settings.json");
+      downloadAnchorNode.setAttribute('href', dataStr);
+      downloadAnchorNode.setAttribute('download', 'settings.json');
       document.body.appendChild(downloadAnchorNode);
       downloadAnchorNode.click();
       downloadAnchorNode.remove();
@@ -82,7 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const reader = new FileReader();
     reader.onload = (e) => {
       const json = e.target.result;
-      const mode = prompt("Enter import mode: 'overwrite', 'newId', or 'ignore'");
+      const mode = prompt(
+        "Enter import mode: 'overwrite', 'newId', or 'ignore'",
+      );
       if (['overwrite', 'newId', 'ignore'].includes(mode)) {
         importSettings(json, mode);
       } else {
@@ -96,7 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
     importTextArea.style.display = 'block';
     importTextArea.addEventListener('change', (event) => {
       const json = event.target.value;
-      const mode = prompt("Enter import mode: 'overwrite', 'newId', or 'ignore'");
+      const mode = prompt(
+        "Enter import mode: 'overwrite', 'newId', or 'ignore'",
+      );
       if (['overwrite', 'newId', 'ignore'].includes(mode)) {
         importSettings(json, mode);
       } else {
@@ -107,4 +115,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadSettings();
 });
-
+*/
